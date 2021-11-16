@@ -1,34 +1,49 @@
 import PokeCard from "../components/pokeCard";
 import { useState, useEffect } from "react";
+import Pagination from "../components/pagination/Pagination";
+import PokePorPage from "../components/pagination/PokePorPage";
 
 export default function Home() {
   const [pokes, setPokes] = useState([]);
-  const [pokeAll, setPokeAll] = useState([]);
+  const [itensPerPage, setItensPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = Math.ceil(pokes.length / itensPerPage);
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  const currentPokes = pokes.slice(startIndex, endIndex);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
-      .then((response) => response.json())
-      .then((data) =>
-        setPokes(
-          data.results.map((response, index) => {
-            return {
-              id: index + 1,
-              name: response.name,
-              url: response.url,
-              image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-                index + 1
-              }.svg`,
-            };
-          })
-        )
+    const fetchData = async () => {
+      const result = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+        .then((response) => response.json())
+        .then((data) => data);
+
+      setPokes(
+        result.results.map((response, index) => {
+          return {
+            id: index + 1,
+            name: response.name,
+            url: response.url,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+              index + 1
+            }.svg`,
+          };
+        })
       );
+    };
+    fetchData();
   }, []);
 
-  console.log(pokes);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [itensPerPage])
 
   return (
     <div>
-      <PokeCard pokes={pokes} />
+      <PokePorPage items={itensPerPage} itemsPerPage={setItensPerPage}/>
+      <Pagination pages={pages} currentPage={setCurrentPage}/>
+      <PokeCard pokes={currentPokes} />
     </div>
   );
 }
