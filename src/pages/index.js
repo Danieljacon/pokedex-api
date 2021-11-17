@@ -2,10 +2,11 @@ import PokeCard from "../components/pokeCard";
 import { useState, useEffect } from "react";
 import Pagination from "../components/pagination/Pagination";
 import PokePorPage from "../components/pagination/PokePorPage";
+import Container from "../components/pagination/Container";
 
 export default function Home() {
   const [pokes, setPokes] = useState([]);
-  const [itensPerPage, setItensPerPage] = useState(10);
+  const [itensPerPage, setItensPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(0);
 
   const pages = Math.ceil(pokes.length / itensPerPage);
@@ -37,12 +38,15 @@ export default function Home() {
 
   useEffect(() => {
     setCurrentPage(0);
-  }, [itensPerPage])
+  }, [itensPerPage]);
 
   return (
     <div>
-      <PokePorPage items={itensPerPage} itemsPerPage={setItensPerPage}/>
-      <Pagination pages={pages} currentPage={setCurrentPage}/>
+      <Container>
+        <Pagination pages={pages} currentPage={setCurrentPage} />
+        <PokePorPage items={itensPerPage} itemsPerPage={setItensPerPage} />
+      </Container>
+
       <PokeCard pokes={currentPokes} />
     </div>
   );

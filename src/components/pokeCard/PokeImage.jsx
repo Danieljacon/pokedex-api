@@ -1,5 +1,8 @@
 const PokeImage = ({ image, name }) => {
-  return <img src={image} alt={name} />;
+  const styles = {
+    image: '',
+  }
+  return <img src={image} alt={name} className={styles.image}/>;
 };
 
 export default PokeImage;
