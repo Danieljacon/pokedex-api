@@ -1,9 +1,28 @@
-Apesar do projeto ser feito dentro do Next JS, o único recurso usado foi o de rotas, prevalecendo o ReactJS.
 
-Feito em React JS, Next e TailwindCSS, pensado em Mobile First.
 
-[npm install] -> inicia o projeto
-[npm run dev] -> inicia o servidor na máquina
+```bash
+First, run the development server:
+npm install
++ npm run dev
+# or
++ yarn dev
+```
 
-O foco inicialmente foi o trabalho com as APIs e, ao decorrer, do projeto, acabei adicionando sistemas como o de paginação e a limitação de "cards" por página, podendo ser modificada pelo usuário.
-Meu foco agora passa à barra de pesquisa, podendo ser utlizada para pesquisar pokémons, e também na página de detalhes de cada pokémon, usando a mesma API, além de adicionar um efeito de "transição de página".
+
+### Sobre o projeto:
+O projeto foi para desenvolver minhas habilidades em requisição de APIs, além de praticar os Hooks com React JS.
++ Pokédex básica, com paginação e Mobile First.
+
+### Tecnologias utilizadas:
++ NextJS
++ ReactJS
++ TailwindCSS
+
+### O que ainda precisa ser desenvolvido:
++ Caixa de pesquisa
++ Efeito de carregamento dos componentes
++ Página de informação única de cada pokémon, ao clicar
+
+![Imagem 1 - Pokedex](https://i.imgur.com/hHQ569g.png)
+![Imagem 2 - Pokedex](https://i.imgur.com/C24h0n4.png)
+![Imagem 3 - Pokedex Mobile](https://i.imgur.com/GXpCmfR.png)
