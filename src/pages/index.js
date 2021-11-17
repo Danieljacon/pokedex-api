@@ -42,11 +42,11 @@ export default function Home() {
 
   return (
     <div>
+    
       <Container>
         <Pagination pages={pages} currentPage={setCurrentPage} />
         <PokePorPage items={itensPerPage} itemsPerPage={setItensPerPage} />
       </Container>
-
       <PokeCard pokes={currentPokes} />
     </div>
   );
